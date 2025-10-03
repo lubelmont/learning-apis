@@ -19,7 +19,7 @@ const usersV2 = [
 
 /**
  * @swagger
- * /api/v1/users:
+ * /api/v2/users:
  *   get:
  *     summary: Obtener todos los usuarios del sistema
  *     description: Retorna una lista de usuarios de ejemplo
@@ -45,15 +45,45 @@ const usersV2 = [
  *                     example: "juan@example.com"
  */
 router.get('/', (req, res) => {
-  res.json(users);
+  res.json(usersV2);
 });
-
-
 
 
 /**
  * @swagger
- * /api/v1/users/{id}:
+ * /api/v2/users:
+ *   get:
+ *     summary: Obtener todos los usuarios del sistema
+ *     description: Retorna una lista de usuarios de ejemplo
+ *     tags: [Usuarios]
+ *     responses:
+ *       200:
+ *         description: Lista de usuarios obtenida exitosamente
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 type: object
+ *                 properties:
+ *                   id:
+ *                     type: integer
+ *                     example: 1
+ *                   name:
+ *                     type: string
+ *                     example: "Juan Pérez"
+ *                   email:
+ *                     type: string
+ *                     example: "juan@example.com"
+ */
+router.get('/', (req, res) => {
+  res.json(usersV2);
+});
+
+
+/**
+ * @swagger
+ * /api/v2/users/{id}:
  *   get:
  *     summary: Obtener usuario por ID
  *     tags: [Usuarios]
@@ -83,7 +113,7 @@ router.get('/', (req, res) => {
  */
 router.get('/:id', (req, res) => {
   const userId = parseInt(req.params.id);
-  const user = users.find(u => u.id === userId);
+  const user = usersV2.find(u => u.id === userId);
   
   if (user) {
     res.json(user);
@@ -96,7 +126,7 @@ router.get('/:id', (req, res) => {
 
 /**
  * @swagger
- * /api/v1/primeruser/:
+ * /api/v2/primeruser/:
  *   get:
  *     summary: Obtener primer usuario
  *     tags: [Usuarios]
@@ -130,7 +160,7 @@ router.get('/primeruser/', (req, res) => {
 
 /**
  * @swagger
- * /api/v1/users:
+ * /api/v2/users:
  *   post:
  *     summary: Crear un nuevo usuario
  *     tags: [Usuarios]

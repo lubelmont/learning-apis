@@ -4,6 +4,7 @@ const swaggerUi = require('swagger-ui-express');
 
 // Importar rutas
 const usersRoutes = require('./routes/usersRouter');
+const usersRoutesV2 = require('./routes/usersRouter_v2');
 const countryRoutes = require('./routes/countriesRouter');
 
 const app = express();
@@ -41,7 +42,7 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
  * @swagger
  * /:
  *   get:
- *     summary: Ruta principal
+ *     summary: Home
  *     description: Retorna un mensaje de bienvenida
  *     responses:
  *       200:
@@ -61,6 +62,7 @@ app.get('/', (req, res) => {
 
 // Usar las rutas de usuarios
 app.use('/api/v1/users', usersRoutes);
+app.use('/api/v2/users', usersRoutesV2);
 app.use(countryRoutes);
 
 // Iniciar servidor
