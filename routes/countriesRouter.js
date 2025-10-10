@@ -364,4 +364,82 @@ router.get('/api/v2/paises', (req, res) => {
 
 
 
+/**
+ * @swagger
+ * /api/v2/japan:
+ *   get:
+ *     summary: Obtiene información de Japón (versión 2)
+ *     description: Retorna información detallada del país Japón en formato de objeto con estructura mejorada
+ *     tags:
+ *       - Países v2
+ *     responses:
+ *       200:
+ *         description: Información de Japón obtenida exitosamente
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 version:
+ *                   type: string
+ *                   description: Versión de la API
+ *                   example: "v2"
+ *                 data:
+ *                   type: object
+ *                   description: Objeto con información de Japón
+ *                   properties:
+ *                     nombre:
+ *                       type: string
+ *                       description: Nombre del país
+ *                       example: "Japan"
+ *                     nombreOficial:
+ *                       type: string
+ *                       description: Nombre oficial del país
+ *                       example: "Japan"
+ *                     codigoPais:
+ *                       type: string
+ *                       description: Código del país
+ *                       example: "JP"
+ *                     bandera:
+ *                       type: string
+ *                       format: uri
+ *                       description: URL de la imagen de la bandera
+ *                       example: "https://flagcdn.com/w320/jp.png"
+ *             examples:
+ *               ejemplo_exitoso:
+ *                 summary: Respuesta exitosa con información de Japón
+ *                 value:
+ *                   version: "v2"
+ *                   data:
+ *                     nombre: "Japan"
+ *                     nombreOficial: "Japan"
+ *                     codigoPais: "JP"
+ *                     bandera: "https://flagcdn.com/w320/jp.png"
+ *       500:
+ *         description: Error interno del servidor
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
+ *                   description: Mensaje de error
+ *                   example: "Error interno del servidor"
+ *       404:
+ *         description: No se encontró información de Japón
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
+ *                   description: Mensaje de error
+ *                   example: "No se encontró información de Japón"
+ */
+router.get('/api/v2/japan', countriesController.getJapanCountry);
+
+
+
 module.exports = router;//Exportar el router

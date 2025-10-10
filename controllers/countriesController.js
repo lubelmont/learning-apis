@@ -1,6 +1,5 @@
-
-
 const countriesService = require('../services/countriesServices');
+const countriesFetchService = require('../services/countriesFetchServices');
 
 
 const getAllAmericaCountries = (request, response) => {
@@ -66,9 +65,20 @@ const getAmericaCountriesByCCA2 = (request, response) => {
     }
 };
 
+const getJapanCountry = async (request, response) => {
+    try {
+        const countries = await countriesFetchService.fetchCountry();
+        response.json(countries);
+    } catch (error) {
+        console.error("Error al obtener los países:", error);
+        response.status(500).json({ error: "Error interno del servidor" });
+    }
+};
+
 module.exports = {
     getAllAmericaCountries,
     getAmericaCountriesNames,
     getAmericaCountriesList,
-    getAmericaCountriesByCCA2
+    getAmericaCountriesByCCA2,
+    getJapanCountry
 };
