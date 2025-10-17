@@ -6,6 +6,7 @@ const swaggerUi = require('swagger-ui-express');
 const usersRoutes = require('./routes/usersRouter');
 const usersRoutesV2 = require('./routes/usersRouter_v2');
 const countryRoutes = require('./routes/countriesRouter');
+const weatherRoutes = require('./routes/weatherRouter');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -63,6 +64,7 @@ app.get('/', (req, res) => {
 // Usar las rutas de usuarios
 app.use('/api/v1/users', usersRoutes);
 app.use('/api/v2/users', usersRoutesV2);
+app.use('/api/v1/weather', weatherRoutes);
 app.use(countryRoutes);
 
 // Iniciar servidor
